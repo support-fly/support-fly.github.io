@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>golang on Support - A support for the team.</title>
+    <title>golang on 苏坡特</title>
     <link>https://support-fly.github.io/tags/golang/</link>
-    <description>Recent content in golang on Support - A support for the team.</description>
+    <description>Recent content in golang on 苏坡特</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
     <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://support-fly.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a New Theme</title>

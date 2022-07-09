@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Support - A support for the team.</title>
+    <title>Tags on 苏坡特</title>
     <link>https://support-fly.github.io/tags/</link>
-    <description>Recent content in Tags on Support - A support for the team.</description>
+    <description>Recent content in Tags on 苏坡特</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
     <lastBuildDate>Mon, 04 Jul 2022 23:21:20 +0800</lastBuildDate><atom:link href="https://support-fly.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>father</title>
@@ -13,6 +12,15 @@
       <pubDate>Mon, 04 Jul 2022 23:21:20 +0800</pubDate>
       
       <guid>https://support-fly.github.io/tags/father/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>https://support-fly.github.io/tags/about/</link>
+      <pubDate>Fri, 01 Jul 2022 21:38:52 +0800</pubDate>
+      
+      <guid>https://support-fly.github.io/tags/about/</guid>
       <description></description>
     </item>
     
@@ -35,18 +43,9 @@
     </item>
     
     <item>
-      <title>tag-6</title>
-      <link>https://support-fly.github.io/tags/tag-6/</link>
-      <pubDate>Mon, 04 Mar 2019 16:01:23 +0800</pubDate>
-      
-      <guid>https://support-fly.github.io/tags/tag-6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>shortcodes</title>
       <link>https://support-fly.github.io/tags/shortcodes/</link>
-      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
+      <pubDate>Sun, 04 Mar 2018 16:01:23 +0800</pubDate>
       
       <guid>https://support-fly.github.io/tags/shortcodes/</guid>
       <description></description>
@@ -58,15 +57,6 @@
       <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
       
       <guid>https://support-fly.github.io/tags/image/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag-7</title>
-      <link>https://support-fly.github.io/tags/tag-7/</link>
-      <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>https://support-fly.github.io/tags/tag-7/</guid>
       <description></description>
     </item>
     
@@ -89,29 +79,11 @@
     </item>
     
     <item>
-      <title>tag-11</title>
-      <link>https://support-fly.github.io/tags/tag-11/</link>
-      <pubDate>Thu, 01 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>https://support-fly.github.io/tags/tag-11/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>English</title>
       <link>https://support-fly.github.io/tags/english/</link>
       <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
       
       <guid>https://support-fly.github.io/tags/english/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag-2</title>
-      <link>https://support-fly.github.io/tags/tag-2/</link>
-      <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
-      
-      <guid>https://support-fly.github.io/tags/tag-2/</guid>
       <description></description>
     </item>
     

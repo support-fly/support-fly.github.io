@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>shortcodes on Support - A support for the team.</title>
+    <title>shortcodes on 苏坡特</title>
     <link>https://support-fly.github.io/tags/shortcodes/</link>
-    <description>Recent content in shortcodes on Support - A support for the team.</description>
+    <description>Recent content in shortcodes on 苏坡特</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 06 Mar 2018 16:01:23 +0800</lastBuildDate><atom:link href="https://support-fly.github.io/tags/shortcodes/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Jane 主题预览</title>
-      <link>https://support-fly.github.io/post/jane-theme-preview.zh-cn/</link>
-      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>https://support-fly.github.io/post/jane-theme-preview.zh-cn/</guid>
-      <description>主题预览,内容有待填充。</description>
-    </item>
-    
+    <lastBuildDate>Sun, 04 Mar 2018 16:01:23 +0800</lastBuildDate><atom:link href="https://support-fly.github.io/tags/shortcodes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shortcodes Preview</title>
       <link>https://support-fly.github.io/post/shortcodes-preview/</link>
