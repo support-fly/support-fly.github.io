@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on 苏坡特</title>
+    <link>https://support-fly.github.io/tags/git/</link>
+    <description>Recent content in git on 苏坡特</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 08 Jul 2022 21:42:39 +0800</lastBuildDate><atom:link href="https://support-fly.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何使用github&#43;hugo搭建静态个人网站</title>
+      <link>https://support-fly.github.io/post/technology/t_github_git_website/</link>
+      <pubDate>Fri, 08 Jul 2022 21:42:39 +0800</pubDate>
+      
+      <guid>https://support-fly.github.io/post/technology/t_github_git_website/</guid>
+      <description>&lt;h2 id=&#34;1github建仓&#34;&gt;1、github建仓&lt;/h2&gt;
+&lt;h2 id=&#34;2hugo下载&#34;&gt;2、hugo下载&lt;/h2&gt;
+&lt;h2 id=&#34;3hugo建站&#34;&gt;3、hugo建站&lt;/h2&gt;
+&lt;h2 id=&#34;4部署到github&#34;&gt;4、部署到github&lt;/h2&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

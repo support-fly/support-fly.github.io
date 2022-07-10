@@ -2,6 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://support-fly.github.io/categories/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/tags/git/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/tags/github/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/tags/hugo/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/post/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/tags/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/categories/technology/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/tags/website/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/post/technology/t_github_git_website/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://support-fly.github.io/</loc>
+    <lastmod>2022-07-08T21:42:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://support-fly.github.io/tags/father/</loc>
     <lastmod>2022-07-04T23:21:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -9,28 +79,7 @@
   </url>
   
   <url>
-    <loc>https://support-fly.github.io/post/</loc>
-    <lastmod>2022-07-04T23:21:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://support-fly.github.io/tags/</loc>
-    <lastmod>2022-07-04T23:21:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://support-fly.github.io/post/life/a_my_father_01/</loc>
-    <lastmod>2022-07-04T23:21:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://support-fly.github.io/</loc>
     <lastmod>2022-07-04T23:21:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -46,13 +95,6 @@
   <url>
     <loc>https://support-fly.github.io/about/</loc>
     <lastmod>2022-07-01T21:41:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://support-fly.github.io/categories/</loc>
-    <lastmod>2019-03-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -248,13 +290,6 @@
   
   <url>
     <loc>https://support-fly.github.io/post/hugoisforlovers/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://support-fly.github.io/tags/hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
