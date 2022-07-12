@@ -23,7 +23,35 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="苏坡特" />
-  <meta name="description" content="1、github建仓 2、hugo下载 3、hugo建站 4、部署到github" />
+  <meta name="description" content="1、github建仓 新建一个 GitHub 库
+注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。 打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。 GitHub Pages 新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository 2、hugo下载 下载安装命令
+Mac下使用命令：
+brew install hugo
+注意：需要提前安装 homebrew 检查安装状态：
+查看 Hugo 是否安装成功，可通过下列命令检查版本号
+hugo version 3、hugo建站 创建新的网站
+新建一个工作目录，执行下列命令：
+mkdir website; cd website
+hugo new site my_blog_web 克隆网站主题
+git clone https://github.com/xianmin/hugo-theme-jane.git theme # 将 jane 主题克隆至 &amp;quot;theme&amp;quot; 目录。
+也可以到该网页选择自己喜欢的主题
+Hugo Themes 编辑网站配置文件
+在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件
+cp theme/jane/dev-config.toml config.toml
+具体配置参考文件描述 本地预览网页效果
+执行下列命令，根据命令后提示打开网页，默认网址http://localhost:1313，即可预览网页
+hugo server 构建网页
+使用 hugo 命令可以构建网页，默认输出到 public 文件夹中 4、部署到github 进入 public 目录，初始化 Git 库。
+cd public # 生成的 HTML 文件保存在 &amp;quot;public&amp;quot; 目录中
+git init 将 Git 本地库关联至远程库。
+git remote add origin git@github.com:username/username.github.io.git 提交你的修改至本地库。
+git status # 查看当前修改状态。
+git add . # 添加所有修改过的文件。你也可以只添加某个文件。
+git commit -m &amp;quot;Add a new post&amp;quot; # &amp;quot;Add a new post&amp;quot; 是 commit message. 将你的修改推至远程库。
+在 public 目录下，将修改推至远程库。
+git push -u origin main
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是： https://username.github.io 常见问题 git push fail ssh 认证失败 上传成功后访问网址无法显示
+[todo] " />
 
   <meta name="keywords" content="Hugo, theme, jane" />
 
@@ -61,9 +89,67 @@
 
 <meta property="og:title" content="如何使用github&#43;hugo搭建静态个人网站" />
 <meta property="og:description" content="1、github建仓
+
+新建一个 GitHub 库
+注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。
+打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。
+GitHub Pages
+新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository
+
 2、hugo下载
+
+下载安装命令
+Mac下使用命令：
+brew install hugo
+注意：需要提前安装 homebrew
+检查安装状态：
+查看 Hugo 是否安装成功，可通过下列命令检查版本号
+hugo version
+
 3、hugo建站
-4、部署到github" />
+
+创建新的网站
+新建一个工作目录，执行下列命令：
+mkdir website; cd website
+hugo new site my_blog_web
+克隆网站主题
+git clone https://github.com/xianmin/hugo-theme-jane.git  theme  # 将 jane 主题克隆至 &quot;theme&quot; 目录。
+也可以到该网页选择自己喜欢的主题
+Hugo Themes
+编辑网站配置文件
+在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件
+cp theme/jane/dev-config.toml config.toml
+具体配置参考文件描述
+本地预览网页效果
+执行下列命令，根据命令后提示打开网页，默认网址http://localhost:1313，即可预览网页
+hugo server
+构建网页
+使用 hugo 命令可以构建网页，默认输出到 public 文件夹中
+
+4、部署到github
+
+进入 public 目录，初始化 Git 库。
+cd public  # 生成的 HTML 文件保存在 &quot;public&quot; 目录中
+git init
+将 Git 本地库关联至远程库。
+git remote add origin git@github.com:username/username.github.io.git
+提交你的修改至本地库。
+git status  # 查看当前修改状态。
+git add .  # 添加所有修改过的文件。你也可以只添加某个文件。
+git commit -m &quot;Add a new post&quot;  # &quot;Add a new post&quot; 是 commit message.
+将你的修改推至远程库。
+在 public 目录下，将修改推至远程库。
+git push -u origin main
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是：
+https://username.github.io
+
+常见问题
+
+git push fail
+ssh 认证失败
+上传成功后访问网址无法显示
+[todo]
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://support-fly.github.io/post/technology/t_github_git_website/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-07-08T21:42:39+08:00" />
@@ -71,17 +157,133 @@
 
 <meta itemprop="name" content="如何使用github&#43;hugo搭建静态个人网站">
 <meta itemprop="description" content="1、github建仓
+
+新建一个 GitHub 库
+注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。
+打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。
+GitHub Pages
+新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository
+
 2、hugo下载
+
+下载安装命令
+Mac下使用命令：
+brew install hugo
+注意：需要提前安装 homebrew
+检查安装状态：
+查看 Hugo 是否安装成功，可通过下列命令检查版本号
+hugo version
+
 3、hugo建站
-4、部署到github"><meta itemprop="datePublished" content="2022-07-08T21:42:39+08:00" />
+
+创建新的网站
+新建一个工作目录，执行下列命令：
+mkdir website; cd website
+hugo new site my_blog_web
+克隆网站主题
+git clone https://github.com/xianmin/hugo-theme-jane.git  theme  # 将 jane 主题克隆至 &quot;theme&quot; 目录。
+也可以到该网页选择自己喜欢的主题
+Hugo Themes
+编辑网站配置文件
+在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件
+cp theme/jane/dev-config.toml config.toml
+具体配置参考文件描述
+本地预览网页效果
+执行下列命令，根据命令后提示打开网页，默认网址http://localhost:1313，即可预览网页
+hugo server
+构建网页
+使用 hugo 命令可以构建网页，默认输出到 public 文件夹中
+
+4、部署到github
+
+进入 public 目录，初始化 Git 库。
+cd public  # 生成的 HTML 文件保存在 &quot;public&quot; 目录中
+git init
+将 Git 本地库关联至远程库。
+git remote add origin git@github.com:username/username.github.io.git
+提交你的修改至本地库。
+git status  # 查看当前修改状态。
+git add .  # 添加所有修改过的文件。你也可以只添加某个文件。
+git commit -m &quot;Add a new post&quot;  # &quot;Add a new post&quot; 是 commit message.
+将你的修改推至远程库。
+在 public 目录下，将修改推至远程库。
+git push -u origin main
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是：
+https://username.github.io
+
+常见问题
+
+git push fail
+ssh 认证失败
+上传成功后访问网址无法显示
+[todo]
+"><meta itemprop="datePublished" content="2022-07-08T21:42:39+08:00" />
 <meta itemprop="dateModified" content="2022-07-08T21:42:39+08:00" />
-<meta itemprop="wordCount" content="37">
+<meta itemprop="wordCount" content="626">
 <meta itemprop="keywords" content="git,github,hugo,website," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="如何使用github&#43;hugo搭建静态个人网站"/>
 <meta name="twitter:description" content="1、github建仓
+
+新建一个 GitHub 库
+注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。
+打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。
+GitHub Pages
+新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository
+
 2、hugo下载
+
+下载安装命令
+Mac下使用命令：
+brew install hugo
+注意：需要提前安装 homebrew
+检查安装状态：
+查看 Hugo 是否安装成功，可通过下列命令检查版本号
+hugo version
+
 3、hugo建站
-4、部署到github"/>
+
+创建新的网站
+新建一个工作目录，执行下列命令：
+mkdir website; cd website
+hugo new site my_blog_web
+克隆网站主题
+git clone https://github.com/xianmin/hugo-theme-jane.git  theme  # 将 jane 主题克隆至 &quot;theme&quot; 目录。
+也可以到该网页选择自己喜欢的主题
+Hugo Themes
+编辑网站配置文件
+在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件
+cp theme/jane/dev-config.toml config.toml
+具体配置参考文件描述
+本地预览网页效果
+执行下列命令，根据命令后提示打开网页，默认网址http://localhost:1313，即可预览网页
+hugo server
+构建网页
+使用 hugo 命令可以构建网页，默认输出到 public 文件夹中
+
+4、部署到github
+
+进入 public 目录，初始化 Git 库。
+cd public  # 生成的 HTML 文件保存在 &quot;public&quot; 目录中
+git init
+将 Git 本地库关联至远程库。
+git remote add origin git@github.com:username/username.github.io.git
+提交你的修改至本地库。
+git status  # 查看当前修改状态。
+git add .  # 添加所有修改过的文件。你也可以只添加某个文件。
+git commit -m &quot;Add a new post&quot;  # &quot;Add a new post&quot; 是 commit message.
+将你的修改推至远程库。
+在 public 目录下，将修改推至远程库。
+git push -u origin main
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是：
+https://username.github.io
+
+常见问题
+
+git push fail
+ssh 认证失败
+上传成功后访问网址无法显示
+[todo]
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -353,8 +555,8 @@
             <a href="https://support-fly.github.io/categories/technology/"> technology </a>
             
           </div>
-        <span class="more-meta"> 约 37 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 约 626 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
         
@@ -370,9 +572,67 @@
     
     <div class="post-content">
       <h2 id="1github建仓">1、github建仓</h2>
+<ol>
+<li>新建一个 GitHub 库<br>
+注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。</li>
+<li>打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。
+<a href="https://pages.github.com">GitHub Pages</a></li>
+<li>新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository</li>
+</ol>
 <h2 id="2hugo下载">2、hugo下载</h2>
+<ol>
+<li>下载安装命令<br>
+Mac下使用命令：<br>
+<code>brew install hugo</code><br>
+注意：需要提前安装 homebrew</li>
+<li>检查安装状态：<br>
+查看 Hugo 是否安装成功，可通过下列命令检查版本号<br>
+<code>hugo version</code></li>
+</ol>
 <h2 id="3hugo建站">3、hugo建站</h2>
+<ol>
+<li>创建新的网站<br>
+新建一个工作目录，执行下列命令：<br>
+<code>mkdir website; cd website</code><br>
+<code>hugo new site my_blog_web</code></li>
+<li>克隆网站主题<br>
+<code>git clone https://github.com/xianmin/hugo-theme-jane.git  theme  # 将 jane 主题克隆至 &quot;theme&quot; 目录。</code><br>
+也可以到该网页选择自己喜欢的主题<br>
+<a href="https://themes.gohugo.io/">Hugo Themes</a></li>
+<li>编辑网站配置文件<br>
+在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件<br>
+<code>cp theme/jane/dev-config.toml config.toml</code><br>
+具体配置参考文件描述</li>
+<li>本地预览网页效果<br>
+执行下列命令，根据命令后提示打开网页，默认网址<a href="http://localhost:1313">http://localhost:1313</a>，即可预览网页<br>
+<code>hugo server</code></li>
+<li>构建网页<br>
+使用 hugo 命令可以构建网页，默认输出到 public 文件夹中</li>
+</ol>
 <h2 id="4部署到github">4、部署到github</h2>
+<ol>
+<li>进入 public 目录，初始化 Git 库。<br>
+<code>cd public  # 生成的 HTML 文件保存在 &quot;public&quot; 目录中</code><br>
+<code>git init</code></li>
+<li>将 Git 本地库关联至远程库。<br>
+<code>git remote add origin git@github.com:username/username.github.io.git</code></li>
+<li>提交你的修改至本地库。<br>
+<code>git status  # 查看当前修改状态。</code><br>
+<code>git add .  # 添加所有修改过的文件。你也可以只添加某个文件。</code><br>
+<code>git commit -m &quot;Add a new post&quot;  # &quot;Add a new post&quot; 是 commit message.</code></li>
+<li>将你的修改推至远程库。<br>
+在 public 目录下，将修改推至远程库。<br>
+<code>git push -u origin main</code><br>
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是：
+<a href="https://username.github.io">https://username.github.io</a></li>
+</ol>
+<h2 id="常见问题">常见问题</h2>
+<ol>
+<li>git push fail</li>
+<li>ssh 认证失败</li>
+<li>上传成功后访问网址无法显示<br>
+[todo]</li>
+</ol>
     </div>
 
     

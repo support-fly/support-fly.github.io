@@ -111,9 +111,67 @@
       <guid>https://support-fly.github.io/post/technology/t_github_git_website/</guid>
       
         <description>&lt;h2 id=&#34;1github建仓&#34;&gt;1、github建仓&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;新建一个 GitHub 库&lt;br&gt;
+注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。&lt;/li&gt;
+&lt;li&gt;打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。
+&lt;a href=&#34;https://pages.github.com&#34;&gt;GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;2hugo下载&#34;&gt;2、hugo下载&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;下载安装命令&lt;br&gt;
+Mac下使用命令：&lt;br&gt;
+&lt;code&gt;brew install hugo&lt;/code&gt;&lt;br&gt;
+注意：需要提前安装 homebrew&lt;/li&gt;
+&lt;li&gt;检查安装状态：&lt;br&gt;
+查看 Hugo 是否安装成功，可通过下列命令检查版本号&lt;br&gt;
+&lt;code&gt;hugo version&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;3hugo建站&#34;&gt;3、hugo建站&lt;/h2&gt;
-&lt;h2 id=&#34;4部署到github&#34;&gt;4、部署到github&lt;/h2&gt;</description>
+&lt;ol&gt;
+&lt;li&gt;创建新的网站&lt;br&gt;
+新建一个工作目录，执行下列命令：&lt;br&gt;
+&lt;code&gt;mkdir website; cd website&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;hugo new site my_blog_web&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;克隆网站主题&lt;br&gt;
+&lt;code&gt;git clone https://github.com/xianmin/hugo-theme-jane.git  theme  # 将 jane 主题克隆至 &amp;quot;theme&amp;quot; 目录。&lt;/code&gt;&lt;br&gt;
+也可以到该网页选择自己喜欢的主题&lt;br&gt;
+&lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;Hugo Themes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;编辑网站配置文件&lt;br&gt;
+在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件&lt;br&gt;
+&lt;code&gt;cp theme/jane/dev-config.toml config.toml&lt;/code&gt;&lt;br&gt;
+具体配置参考文件描述&lt;/li&gt;
+&lt;li&gt;本地预览网页效果&lt;br&gt;
+执行下列命令，根据命令后提示打开网页，默认网址&lt;a href=&#34;http://localhost:1313&#34;&gt;http://localhost:1313&lt;/a&gt;，即可预览网页&lt;br&gt;
+&lt;code&gt;hugo server&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;构建网页&lt;br&gt;
+使用 hugo 命令可以构建网页，默认输出到 public 文件夹中&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;4部署到github&#34;&gt;4、部署到github&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;进入 public 目录，初始化 Git 库。&lt;br&gt;
+&lt;code&gt;cd public  # 生成的 HTML 文件保存在 &amp;quot;public&amp;quot; 目录中&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;git init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将 Git 本地库关联至远程库。&lt;br&gt;
+&lt;code&gt;git remote add origin git@github.com:username/username.github.io.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;提交你的修改至本地库。&lt;br&gt;
+&lt;code&gt;git status  # 查看当前修改状态。&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;git add .  # 添加所有修改过的文件。你也可以只添加某个文件。&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;git commit -m &amp;quot;Add a new post&amp;quot;  # &amp;quot;Add a new post&amp;quot; 是 commit message.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将你的修改推至远程库。&lt;br&gt;
+在 public 目录下，将修改推至远程库。&lt;br&gt;
+&lt;code&gt;git push -u origin main&lt;/code&gt;&lt;br&gt;
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是：
+&lt;a href=&#34;https://username.github.io&#34;&gt;https://username.github.io&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;常见问题&#34;&gt;常见问题&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;git push fail&lt;/li&gt;
+&lt;li&gt;ssh 认证失败&lt;/li&gt;
+&lt;li&gt;上传成功后访问网址无法显示&lt;br&gt;
+[todo]&lt;/li&gt;
+&lt;/ol&gt;</description>
       
     </item>
     
