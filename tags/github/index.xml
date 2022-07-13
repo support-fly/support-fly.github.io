@@ -69,10 +69,13 @@ Mac下使用命令：&lt;br&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;常见问题&#34;&gt;常见问题&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;git push fail&lt;/li&gt;
-&lt;li&gt;ssh 认证失败&lt;/li&gt;
+&lt;li&gt;git push fail
+确认远程仓库名称是否和命令一致；&lt;/li&gt;
+&lt;li&gt;ssh 认证失败
+本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&amp;gt;Settings-&amp;gt;SSH and GPG Keys-&amp;gt;Add New&lt;br&gt;
+&lt;code&gt;ssh-keygen&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;上传成功后访问网址无法显示&lt;br&gt;
-[todo]&lt;/li&gt;
+注意选择github仓库下的配置：“root” or “docs”&lt;/li&gt;
 &lt;/ol&gt;</description>
     </item>
     

@@ -50,8 +50,9 @@ git add . # 添加所有修改过的文件。你也可以只添加某个文件�
 git commit -m &amp;quot;Add a new post&amp;quot; # &amp;quot;Add a new post&amp;quot; 是 commit message. 将你的修改推至远程库。
 在 public 目录下，将修改推至远程库。
 git push -u origin main
-恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是： https://username.github.io 常见问题 git push fail ssh 认证失败 上传成功后访问网址无法显示
-[todo] " />
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是： https://username.github.io 常见问题 git push fail 确认远程仓库名称是否和命令一致； ssh 认证失败 本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&amp;gt;Settings-&amp;gt;SSH and GPG Keys-&amp;gt;Add New
+ssh-keygen 上传成功后访问网址无法显示
+注意选择github仓库下的配置：“root” or “docs” " />
 
   <meta name="keywords" content="Hugo, theme, jane" />
 
@@ -146,9 +147,12 @@ https://username.github.io
 常见问题
 
 git push fail
+确认远程仓库名称是否和命令一致；
 ssh 认证失败
+本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&gt;Settings-&gt;SSH and GPG Keys-&gt;Add New
+ssh-keygen
 上传成功后访问网址无法显示
-[todo]
+注意选择github仓库下的配置：“root” or “docs”
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://support-fly.github.io/post/technology/t_github_git_website/" /><meta property="article:section" content="post" />
@@ -214,12 +218,15 @@ https://username.github.io
 常见问题
 
 git push fail
+确认远程仓库名称是否和命令一致；
 ssh 认证失败
+本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&gt;Settings-&gt;SSH and GPG Keys-&gt;Add New
+ssh-keygen
 上传成功后访问网址无法显示
-[todo]
+注意选择github仓库下的配置：“root” or “docs”
 "><meta itemprop="datePublished" content="2022-07-08T21:42:39+08:00" />
 <meta itemprop="dateModified" content="2022-07-08T21:42:39+08:00" />
-<meta itemprop="wordCount" content="626">
+<meta itemprop="wordCount" content="699">
 <meta itemprop="keywords" content="git,github,hugo,website," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="如何使用github&#43;hugo搭建静态个人网站"/>
 <meta name="twitter:description" content="1、github建仓
@@ -280,9 +287,12 @@ https://username.github.io
 常见问题
 
 git push fail
+确认远程仓库名称是否和命令一致；
 ssh 认证失败
+本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&gt;Settings-&gt;SSH and GPG Keys-&gt;Add New
+ssh-keygen
 上传成功后访问网址无法显示
-[todo]
+注意选择github仓库下的配置：“root” or “docs”
 "/>
 
 <!--[if lte IE 9]>
@@ -555,7 +565,7 @@ ssh 认证失败
             <a href="https://support-fly.github.io/categories/technology/"> technology </a>
             
           </div>
-        <span class="more-meta"> 约 626 字 </span>
+        <span class="more-meta"> 约 699 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -628,10 +638,13 @@ Mac下使用命令：<br>
 </ol>
 <h2 id="常见问题">常见问题</h2>
 <ol>
-<li>git push fail</li>
-<li>ssh 认证失败</li>
+<li>git push fail
+确认远程仓库名称是否和命令一致；</li>
+<li>ssh 认证失败
+本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&gt;Settings-&gt;SSH and GPG Keys-&gt;Add New<br>
+<code>ssh-keygen</code></li>
 <li>上传成功后访问网址无法显示<br>
-[todo]</li>
+注意选择github仓库下的配置：“root” or “docs”</li>
 </ol>
     </div>
 
