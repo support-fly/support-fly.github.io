@@ -339,6 +339,104 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/technology/t_acm_longest_child_sequence/">判断字符串子序列</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-07-18" class="post-time">
+        2022-07-18
+      </time>
+      
+      <span class="more-meta"> 约 522 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+        
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <h2 id="题目描述">题目描述</h2>
+<p>给定字符串 target和 source, 判断 target 是否为 source 的子序列。<br>
+你可以认为 target 和 source 中仅包含英文小写字母。<br>
+字符串 source可能会很长（长度 ~= 500,000），而 target 是个短字符串（长度 &lt;=100）。<br>
+字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。<br>
+（例如，&ldquo;abc&quot;是&quot;aebycd&quot;的一个子序列， 而&quot;ayb&quot;不是）。<br>
+请找出最后一个子序列的起始位置。</p>
+<h2 id="输入描述">输入描述:</h2>
+<p>第一行为target，短字符串（长度 &lt;=100）<br>
+第二行为source，长字符串（长度 ~= 500,000）</p>
+<h2 id="输出描述">输出描述:</h2>
+<p>最后一个子序列的起始位置， 即最后一个子序列首字母的下标</p>
+<h3 id="示例1">示例1</h3>
+<p>输入<br>
+<code>abc</code><br>
+<code>abcaybec</code><br>
+输出<br>
+<code>3</code></p>
+<p>说明<br>
+这里有两个abc的子序列满足，取下标较大的，故返回3<br>
+备注:<br>
+若在source中找不到target，则输出-1</p>
+<h2 id="测试用例">测试用例</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-t" data-lang="t"><span style="display:flex;"><span>abc
+</span></span><span style="display:flex;"><span>cabdef
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>abc
+</span></span><span style="display:flex;"><span>afegbdefsec
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>abc
+</span></span><span style="display:flex;"><span>dfsabcdefahibjkic
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">9</span>
+</span></span></code></pre></div><h2 id="c语言题解">C语言题解：</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX_SOURCE 600000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX_TARGET 110
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> target[<span style="color:#ae81ff">105</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> source[MAX_SOURCE] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, target);
+</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, source);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> t_len <span style="color:#f92672">=</span> strlen(target);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> s_len <span style="color:#f92672">=</span> strlen(source);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> t_len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> s_len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (i<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> j<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>) { <span style="color:#75715e">// 从尾部到头部开始比较
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (target[i] <span style="color:#f92672">==</span> source[j]) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e">// 当到达 target 头部时，找到位置，返回索引
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                printf(<span style="color:#e6db74">&#34;%d&#34;</span>, j);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            i<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        j<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;-1&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>时间复杂度：O(n)</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/t_acm_longest_child_sequence/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/technology/t_acm_max_area/">太阳能板的最大面积</a>
     </h1>
     
@@ -350,7 +448,7 @@
           <a href="https://support-fly.github.io/categories/technology/"> technology </a>
           
         </div>
-      <span class="more-meta"> 约 546 字 </span>
+      <span class="more-meta"> 约 591 字 </span>
       <span class="more-meta"> 预计阅读 2 分钟 </span>
         
         
@@ -387,8 +485,8 @@
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">21</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">30</span>
 </span></span></code></pre></div><h2 id="c语言题解">C语言题解：</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
@@ -405,19 +503,20 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">do</span> {
 </span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> getchar();
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">&amp;&amp;</span> a<span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;9&#39;</span>) {
-</span></span><span style="display:flex;"><span>            tmp <span style="color:#f92672">=</span> tmp<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> a <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> { <span style="color:#75715e">// ,
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            arr[size<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> tmp;
-</span></span><span style="display:flex;"><span>            tmp <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            tmp <span style="color:#f92672">=</span> tmp<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> a <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>; <span style="color:#75715e">// 将字符串转化为数字
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        } <span style="color:#66d9ef">else</span> { <span style="color:#75715e">// ,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            arr[size<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> tmp; <span style="color:#75715e">// 将数字存储到数组中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            tmp <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">while</span> (a <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;\n&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> area;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> max_area <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>size; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">&lt;</span>size; j<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> width <span style="color:#f92672">=</span> arr[i]<span style="color:#f92672">&lt;</span>arr[j] <span style="color:#f92672">?</span> arr[i] <span style="color:#f92672">:</span> arr[j];
-</span></span><span style="display:flex;"><span>            area <span style="color:#f92672">=</span> width <span style="color:#f92672">*</span> (j<span style="color:#f92672">-</span>i);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> width <span style="color:#f92672">=</span> arr[i]; <span style="color:#75715e">// 保存开始位置作为初始高度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">&lt;</span>size; j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            width <span style="color:#f92672">=</span> width<span style="color:#f92672">&lt;</span>arr[j] <span style="color:#f92672">?</span> width : arr[j]; <span style="color:#75715e">// 遍历获取最小高度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            area <span style="color:#f92672">=</span> width <span style="color:#f92672">*</span> (j<span style="color:#f92672">-</span>i);
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (area <span style="color:#f92672">&gt;</span> max_area) {
 </span></span><span style="display:flex;"><span>                max_area <span style="color:#f92672">=</span> area;
 </span></span><span style="display:flex;"><span>            }
@@ -555,107 +654,6 @@
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/technology/t_github_git_website/">如何使用github&#43;hugo搭建静态个人网站</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-07-08" class="post-time">
-        2022-07-08
-      </time>
-      <div class="post-category">
-          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
-          
-        </div>
-      <span class="more-meta"> 约 699 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-        
-        
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <h2 id="1github建仓">1、github建仓</h2>
-<ol>
-<li>新建一个 GitHub 库<br>
-注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。</li>
-<li>打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。
-<a href="https://pages.github.com">GitHub Pages</a></li>
-<li>新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository</li>
-</ol>
-<h2 id="2hugo下载">2、hugo下载</h2>
-<ol>
-<li>下载安装命令<br>
-Mac下使用命令：<br>
-<code>brew install hugo</code><br>
-注意：需要提前安装 homebrew</li>
-<li>检查安装状态：<br>
-查看 Hugo 是否安装成功，可通过下列命令检查版本号<br>
-<code>hugo version</code></li>
-</ol>
-<h2 id="3hugo建站">3、hugo建站</h2>
-<ol>
-<li>创建新的网站<br>
-新建一个工作目录，执行下列命令：<br>
-<code>mkdir website; cd website</code><br>
-<code>hugo new site my_blog_web</code></li>
-<li>克隆网站主题<br>
-<code>git clone https://github.com/xianmin/hugo-theme-jane.git  theme  # 将 jane 主题克隆至 &quot;theme&quot; 目录。</code><br>
-也可以到该网页选择自己喜欢的主题<br>
-<a href="https://themes.gohugo.io/">Hugo Themes</a></li>
-<li>编辑网站配置文件<br>
-在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件<br>
-<code>cp theme/jane/dev-config.toml config.toml</code><br>
-具体配置参考文件描述</li>
-<li>本地预览网页效果<br>
-执行下列命令，根据命令后提示打开网页，默认网址<a href="http://localhost:1313">http://localhost:1313</a>，即可预览网页<br>
-<code>hugo server</code></li>
-<li>构建网页<br>
-使用 hugo 命令可以构建网页，默认输出到 public 文件夹中</li>
-</ol>
-<h2 id="4部署到github">4、部署到github</h2>
-<ol>
-<li>进入 public 目录，初始化 Git 库。<br>
-<code>cd public  # 生成的 HTML 文件保存在 &quot;public&quot; 目录中</code><br>
-<code>git init</code></li>
-<li>将 Git 本地库关联至远程库。<br>
-<code>git remote add origin git@github.com:username/username.github.io.git</code></li>
-<li>提交你的修改至本地库。<br>
-<code>git status  # 查看当前修改状态。</code><br>
-<code>git add .  # 添加所有修改过的文件。你也可以只添加某个文件。</code><br>
-<code>git commit -m &quot;Add a new post&quot;  # &quot;Add a new post&quot; 是 commit message.</code></li>
-<li>将你的修改推至远程库。<br>
-在 public 目录下，将修改推至远程库。<br>
-<code>git push -u origin main</code><br>
-恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是：
-<a href="https://username.github.io">https://username.github.io</a></li>
-</ol>
-<h2 id="常见问题">常见问题</h2>
-<ol>
-<li>git push fail
-确认远程仓库名称是否和命令一致；</li>
-<li>ssh 认证失败
-本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&gt;Settings-&gt;SSH and GPG Keys-&gt;Add New<br>
-<code>ssh-keygen</code></li>
-<li>上传成功后访问网址无法显示<br>
-注意选择github仓库下的配置：“root” or “docs”</li>
-</ol>
-    </div>
-    <div class="read-more">
-      <a href="/post/technology/t_github_git_website/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -699,6 +697,10 @@ Mac下使用命令：<br>
       
       <li >
         <a href="/page/5/">5</a>
+      </li>
+      
+      <li >
+        <a href="/page/6/">6</a>
       </li>
       
     </ul>

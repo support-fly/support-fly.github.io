@@ -339,6 +339,107 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/technology/t_github_git_website/">如何使用github&#43;hugo搭建静态个人网站</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-07-08" class="post-time">
+        2022-07-08
+      </time>
+      <div class="post-category">
+          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
+          
+        </div>
+      <span class="more-meta"> 约 699 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+        
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <h2 id="1github建仓">1、github建仓</h2>
+<ol>
+<li>新建一个 GitHub 库<br>
+注册一个 GitHub 账号。如果你已有账号，直接登录。如果你没有账号，注册并登录。</li>
+<li>打开 GitHub Pages 官网，浏览并了解 User or organization site 部分对应的操作步骤。
+<a href="https://pages.github.com">GitHub Pages</a></li>
+<li>新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username，新建 repository</li>
+</ol>
+<h2 id="2hugo下载">2、hugo下载</h2>
+<ol>
+<li>下载安装命令<br>
+Mac下使用命令：<br>
+<code>brew install hugo</code><br>
+注意：需要提前安装 homebrew</li>
+<li>检查安装状态：<br>
+查看 Hugo 是否安装成功，可通过下列命令检查版本号<br>
+<code>hugo version</code></li>
+</ol>
+<h2 id="3hugo建站">3、hugo建站</h2>
+<ol>
+<li>创建新的网站<br>
+新建一个工作目录，执行下列命令：<br>
+<code>mkdir website; cd website</code><br>
+<code>hugo new site my_blog_web</code></li>
+<li>克隆网站主题<br>
+<code>git clone https://github.com/xianmin/hugo-theme-jane.git  theme  # 将 jane 主题克隆至 &quot;theme&quot; 目录。</code><br>
+也可以到该网页选择自己喜欢的主题<br>
+<a href="https://themes.gohugo.io/">Hugo Themes</a></li>
+<li>编辑网站配置文件<br>
+在上述新建文件夹 website 下，拷贝 theme/jane 默认配置文件<br>
+<code>cp theme/jane/dev-config.toml config.toml</code><br>
+具体配置参考文件描述</li>
+<li>本地预览网页效果<br>
+执行下列命令，根据命令后提示打开网页，默认网址<a href="http://localhost:1313">http://localhost:1313</a>，即可预览网页<br>
+<code>hugo server</code></li>
+<li>构建网页<br>
+使用 hugo 命令可以构建网页，默认输出到 public 文件夹中</li>
+</ol>
+<h2 id="4部署到github">4、部署到github</h2>
+<ol>
+<li>进入 public 目录，初始化 Git 库。<br>
+<code>cd public  # 生成的 HTML 文件保存在 &quot;public&quot; 目录中</code><br>
+<code>git init</code></li>
+<li>将 Git 本地库关联至远程库。<br>
+<code>git remote add origin git@github.com:username/username.github.io.git</code></li>
+<li>提交你的修改至本地库。<br>
+<code>git status  # 查看当前修改状态。</code><br>
+<code>git add .  # 添加所有修改过的文件。你也可以只添加某个文件。</code><br>
+<code>git commit -m &quot;Add a new post&quot;  # &quot;Add a new post&quot; 是 commit message.</code></li>
+<li>将你的修改推至远程库。<br>
+在 public 目录下，将修改推至远程库。<br>
+<code>git push -u origin main</code><br>
+恭喜！现在你已经拥有了一个自己构建的博客网站。网址地址是：
+<a href="https://username.github.io">https://username.github.io</a></li>
+</ol>
+<h2 id="常见问题">常见问题</h2>
+<ol>
+<li>git push fail
+确认远程仓库名称是否和命令一致；</li>
+<li>ssh 认证失败
+本地使用命令生成key；然后将 id_rsa.pub 的内容填充到 github-&gt;Settings-&gt;SSH and GPG Keys-&gt;Add New<br>
+<code>ssh-keygen</code></li>
+<li>上传成功后访问网址无法显示<br>
+注意选择github仓库下的配置：“root” or “docs”</li>
+</ol>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/t_github_git_website/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/life/a_my_father_01/">纪念我的父亲（一）</a>
     </h1>
     
@@ -413,50 +514,6 @@
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/shortcodes-preview/">Shortcodes Preview</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-03-04" class="post-time">
-        2018-03-04
-      </time>
-      <div class="post-category">
-          <a href="https://support-fly.github.io/categories/docs/"> docs </a>
-          <a href="https://support-fly.github.io/categories/shortcodes/"> shortcodes </a>
-          <a href="https://support-fly.github.io/categories/index/"> index </a>
-          
-        </div>
-      <span class="more-meta"> 约 405 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-        
-        
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <h2 id="what-a-shortcode-is">What a Shortcode is</h2>
-<p>Hugo loves Markdown because of its simple content format, but there are times when Markdown falls short. Often, content authors are forced to add raw HTML (e.g., video <code>&lt;iframes&gt;</code>) to Markdown content. We think this contradicts the beautiful simplicity of Markdown&rsquo;s syntax.</p>
-<p>Hugo created <strong>shortcodes</strong> to circumvent these limitations.</p>
-<p>A shortcode is a simple snippet inside a content file that Hugo will render using a predefined template. Note that shortcodes will not work in template files. If you need the type of drop-in functionality that shortcodes provide but in a template, you most likely want a [partial template][partials] instead.</p>
-<p>In addition to cleaner Markdown, shortcodes can be updated any time to reflect new classes, techniques, or standards. At the point of site generation, Hugo shortcodes will easily merge in your changes. You avoid a possibly complicated search and replace operation.</p>
-<p>More details: <a href="https://gohugo.io/content-management/shortcodes/">https://gohugo.io/content-management/shortcodes/</a></p>
-    </div>
-    <div class="read-more">
-      <a href="/post/shortcodes-preview/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -500,6 +557,10 @@
       
       <li >
         <a href="/page/5/">5</a>
+      </li>
+      
+      <li >
+        <a href="/page/6/">6</a>
       </li>
       
     </ul>
