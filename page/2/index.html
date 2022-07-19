@@ -339,12 +339,170 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/technology/t_algorithm_kmp/">字符串 - 子串查找之kmp算法</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-07-10" class="post-time">
+        2022-07-10
+      </time>
+      <div class="post-category">
+          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
+          
+        </div>
+      <span class="more-meta"> 约 449 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+        
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <h2 id="题目">题目</h2>
+<p>计算模板串S在文本串T中出现了多少次？</p>
+<h1 id="输入描述">输入描述</h1>
+<p>由大小写字母组成的两组字符串，第一行为模板字符串，第二行为文本串，找出模板字符串在文本串出现的次数</p>
+<h1 id="输出描述">输出描述</h1>
+<p>输出模板字符串在文本串出现的次数</p>
+<h1 id="示例">示例</h1>
+<p><code>ababd</code><br>
+<code>abababdb</code></p>
+<h1 id="思路">思路</h1>
+<p>1、暴力法:拿模板字符串和文本串逐个比较，时间复杂度 O(m*n)<br>
+2、KMP算法：<br>
+参考链接：<a href="http://www.matrix67.com/blog/archives/115">KMP算法详解</a></p>
+<h1 id="题解">题解</h1>
+<h2 id="kmp---c语言">KMP - C语言</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 计算模板串S在文本串T中出现了多少次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param S string字符串 模板串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param T string字符串 文本串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return int整型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * C语言声明定义全局变量请加上static，防止重复定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">next_array</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>patten, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>next)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> strlen(patten);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> j;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>len; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (j<span style="color:#f92672">&gt;-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> patten[i] <span style="color:#f92672">!=</span> patten[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) { <span style="color:#75715e">// 当匹配表中有匹配信息后
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            j <span style="color:#f92672">=</span> next[j];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (patten[i] <span style="color:#f92672">==</span> patten[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) { <span style="color:#75715e">//ababc // -1,-1,0,1,-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            j<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        next[i] <span style="color:#f92672">=</span> j;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">kmp</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> S, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> T ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> lens <span style="color:#f92672">=</span> strlen(S);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> lent <span style="color:#f92672">=</span> strlen(T);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (lens <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> lent <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (lens <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>next <span style="color:#f92672">=</span> (<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>)<span style="color:#f92672">*</span>lens);
+</span></span><span style="display:flex;"><span>    next_array(S, next);
+</span></span><span style="display:flex;"><span>    print_array(next, lens);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i, j<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>lent; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (j<span style="color:#f92672">&gt;-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> T[i] <span style="color:#f92672">!=</span> S[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>            j <span style="color:#f92672">=</span> next[j];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (T[i] <span style="color:#f92672">==</span> S[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>            j<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">==</span> lens<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    free(next);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> cnt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> S[<span style="color:#ae81ff">256</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> T[<span style="color:#ae81ff">256</span>];
+</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%s%s&#34;</span>, S, T);
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, kmp(S, T));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/t_algorithm_kmp/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/life/a_my_father_01/">纪念我的父亲（一）</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-07-04" class="post-time">
+        2022-07-04
+      </time>
+      
+      <span class="more-meta"> 约 1594 字 </span>
+      <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+        
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <p>　　我的思绪常常飘到过去，飘到那个远离家乡的小村庄，那个父亲最后停留的地方。父亲大概也没有想到这辈子会那么短暂，而且最后的时间都在那个异乡度过。</p>
+<p>　　那是一个安静的村落，具有广东特点的许多特点，有一个传承下来又翻新过的祠堂，祠堂前面有一个水塘，祠堂到水塘中间都用水泥硬化了路面，从村子路过时祠堂显得宽阔又庄严。祠堂旁边无一例外的有两颗巨大的榕树，这种树的寿命往往显示着村庄的历史，越是古老的村庄，祠堂旁边的树年龄越大，这只是它的一个功能；它的另外一个功能是在夏天给村里提供一处纳凉休息的地方，树下面有几张斑驳的石桌，村里面的老人和小孩都喜欢在午后到这里乘凉嬉戏。</p>
+<p>　　但是父亲并没有居住在这个村子里，他是从外地过来这边做养殖的。在距离村子后面大约两三里地的地方，有三个池塘，一个比较大，另外两个比较小，它们位置的中间有两个小屋，青砖搭建的，一间用来放渔具和杂物的，另一件可能早期用来看鱼塘的吧，具体不得而知了；这间小屋由于建的比一般平房高一点，还又木板分了两层；占地面积大约五六个平方，地面一层放了一张一米五的竹板折叠床，一个电冰箱，一个自制的架子上面摆着一台电视；上面一层用木板架空，木板上面铺了彩棚布挡灰尘，紧接着用棉絮打底摆成一张床的形状，也可以住人，旁边摆了两个行李箱放衣服，又架了一根竹子挂着经常要穿的衣服；二楼距离地面两米多一点，中间用一个木头搭建的简易楼梯连接；为了能做饭，又在青砖房旁边搭建了一个棚子，周围用石棉瓦围住，就成了一个能挡雨遮风的厨房兼大厅，这个棚子比房子的占地面积还要大，整个建筑堆在一起看起来还是一间挺大的房子；房子前面有一块空地，空地连接着马路，房子左边不远处立了两扇铁门，将房子和马路隔开，这边就更像一块独立的院子了，父亲和母亲吃住就在这个院子里。</p>
+<p>　　再往里面就是养殖的地方了，有一排砖墙和沥青油毡顶的保温房，是冬天用来给鸭苗保温的；再过去一点在水里搭建了一个棚子。这种棚子是养殖专业棚，大多用竹子做支撑和结构，在和岸边平齐的地方构建平台，平台是延伸在水面的，上面用一排排竹子水平绑在支撑的架子上；平台的竹子上面平铺一层钢丝网，用铁丝把钢丝网固定在竹子上，这样鸭子就不会掉下去，人在上面也如履平地，鸭粪可以通过钢丝网漏到水塘里喂鱼，这个就是在生物课上说的生态养殖。棚子的四周都用钢丝网围着，在朝水塘方向的左右两边都开了个下水坡，用来给鸭子下到水塘里喝水和活动；当然下水的区域是用渔网围住的，不然鸭子都满水塘跑了。这个养殖棚大约两百个平方，一栏能养两千到三千鸭子。往上走还有两个水塘，一个水塘比较小，棚子也就比较小，只能养一千到两千只鸭子；另外一个水塘比较大，也能养两千到三千鸭子。父亲就是在这样一个村落里做养殖专业户。</p>
+<p>　　父亲在这边搞养殖，主营养殖番鸭。这种鸭子的名字我还闹了个笑话，因为大家平时都是说的家乡话，而湖南人发音“h”和“f”又不分，我一度以为这种鸭子叫“花鸭”，直到后面看到父亲的养殖书籍才知道这种鸭子叫番鸭。番鸭其实是海外引进的一种养殖肉鸭，故名“番”鸭；原产于中、南美洲热带地区，故主要养殖区域在我国南方；因为养殖出栏周期短，发育快，且肉质鲜美，有一定的消费市场，售价也比较一般鸭子高出不少，所以广东这边有大量的人员从事这块的养殖行业。父亲也养过别的品种的鸭子，但是都因为收益的问题而仅仅养了几批次；番鸭一直是首选品种，而且自己也爱吃。</p>
+<p>　　父亲早在二零零五年就开始从事养殖，刚开始养殖的地方并不在这里，而是在花都炭步。一般养殖棚三到五年就因为竹子结构的寿命问题报废，维修的成本和新建一个的成本差不多，而且由于鸭子的疫情关系，一旦养殖区域发生过鸭疫，那么后续的鸭子患上鸭疫的可能性更高，因此一般在一个区域养殖的时间不会太长。父亲在搬到这个地方之前，还待了几个别的地方，分别是花都横岗，赤坭，还有一个水库，最后才搬到这个叫司前白庙的地方，满打满算从事养殖有九年左右。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/life/a_my_father_01/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/technology/t_github_git_website/">如何使用github&#43;hugo搭建静态个人网站</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2022-07-08" class="post-time">
-        2022-07-08
+      <time datetime="2022-07-01" class="post-time">
+        2022-07-01
       </time>
       <div class="post-category">
           <a href="https://support-fly.github.io/categories/technology/"> technology </a>
@@ -430,84 +588,6 @@ Mac下使用命令：<br>
     </div>
     <div class="read-more">
       <a href="/post/technology/t_github_git_website/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/life/a_my_father_01/">纪念我的父亲（一）</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-07-04" class="post-time">
-        2022-07-04
-      </time>
-      
-      <span class="more-meta"> 约 1594 字 </span>
-      <span class="more-meta"> 预计阅读 4 分钟 </span>
-        
-        
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <p>　　我的思绪常常飘到过去，飘到那个远离家乡的小村庄，那个父亲最后停留的地方。父亲大概也没有想到这辈子会那么短暂，而且最后的时间都在那个异乡度过。</p>
-<p>　　那是一个安静的村落，具有广东特点的许多特点，有一个传承下来又翻新过的祠堂，祠堂前面有一个水塘，祠堂到水塘中间都用水泥硬化了路面，从村子路过时祠堂显得宽阔又庄严。祠堂旁边无一例外的有两颗巨大的榕树，这种树的寿命往往显示着村庄的历史，越是古老的村庄，祠堂旁边的树年龄越大，这只是它的一个功能；它的另外一个功能是在夏天给村里提供一处纳凉休息的地方，树下面有几张斑驳的石桌，村里面的老人和小孩都喜欢在午后到这里乘凉嬉戏。</p>
-<p>　　但是父亲并没有居住在这个村子里，他是从外地过来这边做养殖的。在距离村子后面大约两三里地的地方，有三个池塘，一个比较大，另外两个比较小，它们位置的中间有两个小屋，青砖搭建的，一间用来放渔具和杂物的，另一件可能早期用来看鱼塘的吧，具体不得而知了；这间小屋由于建的比一般平房高一点，还又木板分了两层；占地面积大约五六个平方，地面一层放了一张一米五的竹板折叠床，一个电冰箱，一个自制的架子上面摆着一台电视；上面一层用木板架空，木板上面铺了彩棚布挡灰尘，紧接着用棉絮打底摆成一张床的形状，也可以住人，旁边摆了两个行李箱放衣服，又架了一根竹子挂着经常要穿的衣服；二楼距离地面两米多一点，中间用一个木头搭建的简易楼梯连接；为了能做饭，又在青砖房旁边搭建了一个棚子，周围用石棉瓦围住，就成了一个能挡雨遮风的厨房兼大厅，这个棚子比房子的占地面积还要大，整个建筑堆在一起看起来还是一间挺大的房子；房子前面有一块空地，空地连接着马路，房子左边不远处立了两扇铁门，将房子和马路隔开，这边就更像一块独立的院子了，父亲和母亲吃住就在这个院子里。</p>
-<p>　　再往里面就是养殖的地方了，有一排砖墙和沥青油毡顶的保温房，是冬天用来给鸭苗保温的；再过去一点在水里搭建了一个棚子。这种棚子是养殖专业棚，大多用竹子做支撑和结构，在和岸边平齐的地方构建平台，平台是延伸在水面的，上面用一排排竹子水平绑在支撑的架子上；平台的竹子上面平铺一层钢丝网，用铁丝把钢丝网固定在竹子上，这样鸭子就不会掉下去，人在上面也如履平地，鸭粪可以通过钢丝网漏到水塘里喂鱼，这个就是在生物课上说的生态养殖。棚子的四周都用钢丝网围着，在朝水塘方向的左右两边都开了个下水坡，用来给鸭子下到水塘里喝水和活动；当然下水的区域是用渔网围住的，不然鸭子都满水塘跑了。这个养殖棚大约两百个平方，一栏能养两千到三千鸭子。往上走还有两个水塘，一个水塘比较小，棚子也就比较小，只能养一千到两千只鸭子；另外一个水塘比较大，也能养两千到三千鸭子。父亲就是在这样一个村落里做养殖专业户。</p>
-<p>　　父亲在这边搞养殖，主营养殖番鸭。这种鸭子的名字我还闹了个笑话，因为大家平时都是说的家乡话，而湖南人发音“h”和“f”又不分，我一度以为这种鸭子叫“花鸭”，直到后面看到父亲的养殖书籍才知道这种鸭子叫番鸭。番鸭其实是海外引进的一种养殖肉鸭，故名“番”鸭；原产于中、南美洲热带地区，故主要养殖区域在我国南方；因为养殖出栏周期短，发育快，且肉质鲜美，有一定的消费市场，售价也比较一般鸭子高出不少，所以广东这边有大量的人员从事这块的养殖行业。父亲也养过别的品种的鸭子，但是都因为收益的问题而仅仅养了几批次；番鸭一直是首选品种，而且自己也爱吃。</p>
-<p>　　父亲早在二零零五年就开始从事养殖，刚开始养殖的地方并不在这里，而是在花都炭步。一般养殖棚三到五年就因为竹子结构的寿命问题报废，维修的成本和新建一个的成本差不多，而且由于鸭子的疫情关系，一旦养殖区域发生过鸭疫，那么后续的鸭子患上鸭疫的可能性更高，因此一般在一个区域养殖的时间不会太长。父亲在搬到这个地方之前，还待了几个别的地方，分别是花都横岗，赤坭，还有一个水库，最后才搬到这个叫司前白庙的地方，满打满算从事养殖有九年左右。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/life/a_my_father_01/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/math-preview/">Math Preview</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-03-04" class="post-time">
-        2019-03-04
-      </time>
-      <div class="post-category">
-          <a href="https://support-fly.github.io/categories/docs/"> docs </a>
-          <a href="https://support-fly.github.io/categories/math/"> math </a>
-          <a href="https://support-fly.github.io/categories/index/"> index </a>
-          
-        </div>
-      <span class="more-meta"> 约 652 字 </span>
-      <span class="more-meta"> 预计阅读 4 分钟 </span>
-        
-        
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <p><a href="https://www.intmath.com/cg5/katex-mathjax-comparison.php">KaTeX and MathJax Comparison Demo, currently processed as KaTex</a></p>
-    </div>
-    <div class="read-more">
-      <a href="/post/math-preview/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

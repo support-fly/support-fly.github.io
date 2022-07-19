@@ -339,6 +339,131 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/technology/t_acm_student_square_matrix/">学生方阵</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-07-19" class="post-time">
+        2022-07-19
+      </time>
+      <div class="post-category">
+          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
+          
+        </div>
+      <span class="more-meta"> 约 368 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+        
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <h2 id="题目描述">题目描述</h2>
+<p>学校组织活动，将学生排成一个矩形方阵。请在矩形方阵中找到最大的位置相连的男生数量。这个相连位置在一个直线上，方向可以是水平的、垂直的、呈对角线的或者反对角线的。
+注：学生个数不会超过10000.</p>
+<h2 id="输入描述">输入描述:</h2>
+<p>输入的第一行为矩阵的行数和列数，接下来的n行为矩阵元素，元素间用“,”分隔。</p>
+<h2 id="输出描述">输出描述:</h2>
+<p>输出一个整数，表示矩阵中最长的位置相连的男生个数。</p>
+<h3 id="示例1">示例1</h3>
+<p>输入<br>
+<code>3,4</code><br>
+<code>F,M,M,F</code><br>
+<code>F,M,M,F</code><br>
+<code>F,F,F,M</code></p>
+<p>输出<br>
+<code>3</code></p>
+<h2 id="测试用例">测试用例</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-t" data-lang="t"><span style="display:flex;"><span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>H,M,H,M,H
+</span></span><span style="display:flex;"><span>H,M,H,M,H
+</span></span><span style="display:flex;"><span>H,M,H,M,H
+</span></span><span style="display:flex;"><span>H,M,H,M,H
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>M,M,M,M,M
+</span></span><span style="display:flex;"><span>H,M,H,M,H
+</span></span><span style="display:flex;"><span>H,M,H,M,H
+</span></span><span style="display:flex;"><span>H,M,H,M,H
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><h2 id="c语言题解">C语言题解：</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>todo
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdbool.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX 105
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> n,m;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> g[MAX][MAX] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%d,%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);<span style="color:#75715e">//printf(&#34;%d %d\n&#34;, n, m);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> s[<span style="color:#ae81ff">500</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, s);<span style="color:#75715e">//printf(&#34;%s\n&#34;, s);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>m; j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//printf(&#34;%c&#34;, s[j*2]);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (s[j<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;M&#39;</span>) {
+</span></span><span style="display:flex;"><span>                g[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    print_g();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (k<span style="color:#f92672">&lt;</span>m) { <span style="color:#75715e">// 0,0 0,1 0,2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (g[i][k] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>                cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (cnt <span style="color:#f92672">&gt;</span> max) {
+</span></span><span style="display:flex;"><span>                    max <span style="color:#f92672">=</span> cnt;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>m; j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (k<span style="color:#f92672">&lt;</span>m) { <span style="color:#75715e">// 0,0 0,1 0,2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (g[k][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>                cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (cnt <span style="color:#f92672">&gt;</span> max) {
+</span></span><span style="display:flex;"><span>                    max <span style="color:#f92672">=</span> cnt;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, max);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/t_acm_student_square_matrix/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/technology/t_acm_longest_child_sequence/">判断字符串子序列</a>
     </h1>
     
@@ -346,7 +471,10 @@
       <time datetime="2022-07-18" class="post-time">
         2022-07-18
       </time>
-      
+      <div class="post-category">
+          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
+          
+        </div>
       <span class="more-meta"> 约 522 字 </span>
       <span class="more-meta"> 预计阅读 2 分钟 </span>
         
@@ -529,125 +657,6 @@
     </div>
     <div class="read-more">
       <a href="/post/technology/t_acm_max_area/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/technology/t_algorithm_kmp/">字符串 - 子串查找之kmp算法</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-07-10" class="post-time">
-        2022-07-10
-      </time>
-      <div class="post-category">
-          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
-          
-        </div>
-      <span class="more-meta"> 约 449 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-        
-        
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <h2 id="题目">题目</h2>
-<p>计算模板串S在文本串T中出现了多少次？</p>
-<h1 id="输入描述">输入描述</h1>
-<p>由大小写字母组成的两组字符串，第一行为模板字符串，第二行为文本串，找出模板字符串在文本串出现的次数</p>
-<h1 id="输出描述">输出描述</h1>
-<p>输出模板字符串在文本串出现的次数</p>
-<h1 id="示例">示例</h1>
-<p><code>ababd</code><br>
-<code>abababdb</code></p>
-<h1 id="思路">思路</h1>
-<p>1、暴力法:拿模板字符串和文本串逐个比较，时间复杂度 O(m*n)<br>
-2、KMP算法：<br>
-参考链接：<a href="http://www.matrix67.com/blog/archives/115">KMP算法详解</a></p>
-<h1 id="题解">题解</h1>
-<h2 id="kmp---c语言">KMP - C语言</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 计算模板串S在文本串T中出现了多少次
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param S string字符串 模板串
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param T string字符串 文本串
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return int整型
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * C语言声明定义全局变量请加上static，防止重复定义
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">next_array</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>patten, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>next)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> strlen(patten);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> j;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>len; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (j<span style="color:#f92672">&gt;-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> patten[i] <span style="color:#f92672">!=</span> patten[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) { <span style="color:#75715e">// 当匹配表中有匹配信息后
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            j <span style="color:#f92672">=</span> next[j];
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (patten[i] <span style="color:#f92672">==</span> patten[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) { <span style="color:#75715e">//ababc // -1,-1,0,1,-1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            j<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        next[i] <span style="color:#f92672">=</span> j;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">kmp</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> S, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> T ) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> lens <span style="color:#f92672">=</span> strlen(S);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> lent <span style="color:#f92672">=</span> strlen(T);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (lens <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> lent <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (lens <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>next <span style="color:#f92672">=</span> (<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>)<span style="color:#f92672">*</span>lens);
-</span></span><span style="display:flex;"><span>    next_array(S, next);
-</span></span><span style="display:flex;"><span>    print_array(next, lens);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i, j<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>lent; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (j<span style="color:#f92672">&gt;-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> T[i] <span style="color:#f92672">!=</span> S[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) {
-</span></span><span style="display:flex;"><span>            j <span style="color:#f92672">=</span> next[j];
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (T[i] <span style="color:#f92672">==</span> S[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) {
-</span></span><span style="display:flex;"><span>            j<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">==</span> lens<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-</span></span><span style="display:flex;"><span>            cnt<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    free(next);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> cnt;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
-</span></span><span style="display:flex;"><span>{ 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> S[<span style="color:#ae81ff">256</span>];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> T[<span style="color:#ae81ff">256</span>];
-</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%s%s&#34;</span>, S, T);
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, kmp(S, T));
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
-    </div>
-    <div class="read-more">
-      <a href="/post/technology/t_algorithm_kmp/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
