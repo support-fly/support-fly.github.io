@@ -37,7 +37,7 @@
 备注：10米高支柱和5米高支柱之间宽度为5，高度取小的支柱高度也是5，面积为25，任取其他两根支柱所能获得的面积都小于25 所以最大面积为25。
 思路分析
 10米高支柱和5米高支柱之间宽度为5，柱子的高度是无序的，所以宽等于高支柱的高减去低支柱的高。高度取小的支柱高度。任取其他两根支柱所能获得的面积，取其中最大的。
-测试用例 1,2,3,4,5,6,7,8,9,10 25 10,9,8,7,6,5,4,3,2,1 25 1,7,8,9,8,5,8,9 30 C语言题解： #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #define MAX 10002 int main() { int arr[MAX]; int size = 0; char a; int tmp = 0; // 处理输入 do { a = getchar(); if (a &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; a&amp;lt;= &amp;#39;9&amp;#39;) { tmp = tmp*10 &#43; a - &amp;#39;0&amp;#39;; // 将字符串转化为数字 } else { // , arr[size&#43;&#43;] = tmp; // 将数字存储到数组中 tmp = 0; } } while (a != &amp;#39;\n&amp;#39;); int area; int max_area = 0; for (int i=0; i&amp;lt;size; i&#43;&#43;) { int width = arr[i]; // 保存开始位置作为初始高度 for (int j=i&#43;1; j&amp;lt;size; j&#43;&#43;) { width = width&amp;lt;arr[j] ? width : arr[j]; // 遍历获取最小高度 area = width * (j-i); if (area &amp;gt; max_area) { max_area = area; } } } printf(&amp;#34;%d&amp;#34;, max_area); return 0; } 时间复杂度 O(n^2);
+测试用例 1,2,3,4,5,6,7,8,9,10 25 10,9,8,7,6,5,4,3,2,1 25 1,7,8,9,8,5,8,9 30 C语言题解： #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #define MAX 10002 int main() { int arr[MAX]; int size = 0; char a; int tmp = 0; // 处理输入 do { a = getchar(); if (a &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; a&amp;lt;= &amp;#39;9&amp;#39;) { tmp = tmp*10 &#43; a - &amp;#39;0&amp;#39;; // 将字符串转化为数字 } else { // , arr[size&#43;&#43;] = tmp; // 将数字存储到数组中 tmp = 0; } } while (a != &amp;#39;\n&amp;#39;); int area; int max_area = 0; for (int i=0; i&amp;lt;size; i&#43;&#43;) { int width = arr[i]; // 保存开始位置作为初始高度 for (int j=i&#43;1; j&amp;lt;size; j&#43;&#43;) { width = width&amp;lt;arr[j] ? width : arr[j]; // 遍历获取最小高度 area = width * (j-i); if (area &amp;gt; max_area) { max_area = area; } } } printf(&amp;#34;%d&amp;#34;, max_area); return 0; } golang 题解： package main import ( &amp;#34;fmt&amp;#34; ) func main() { var a byte var tmp int var arr []int for { fmt.Scanf(&amp;#34;%c&amp;#34;, &amp;amp;a) if a &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; a &amp;lt;= &amp;#39;9&amp;#39; { tmp = tmp*10 &#43; (int)(a - &amp;#39;0&amp;#39;) } else { arr = append(arr, tmp) tmp = 0 } if a == &amp;#39;\n&amp;#39; { break; } } var area int max_area := 0 length := len(arr) for i:= 0; i&amp;lt;length; i&#43;&#43; { width := arr[i] for j:=i&#43;1; j&amp;lt;length; j&#43;&#43; { if width &amp;gt; arr[j] { width = arr[j] } area = width * (j-i) if max_area &amp;lt; area { max_area = area; } } } fmt.Println(max_area) } 时间复杂度 O(n^2);
 " />
 
   <meta name="keywords" content="Hugo, theme, jane" />
@@ -140,6 +140,47 @@ int main()
     printf(&#34;%d&#34;, max_area);
     return 0;
 }
+golang 题解：
+package main
+
+import (
+	&#34;fmt&#34;
+)
+
+func main() {
+	var a byte
+	var tmp int
+	var arr []int
+	for {
+		fmt.Scanf(&#34;%c&#34;, &amp;a)
+		if a &gt;= &#39;0&#39; &amp;&amp; a &lt;= &#39;9&#39; {
+			tmp = tmp*10 &#43; (int)(a - &#39;0&#39;)
+		} else {
+			arr = append(arr, tmp)
+			tmp = 0
+		}
+		if a == &#39;\n&#39; {
+			break;
+		}
+	}
+	var area int
+	max_area := 0
+	length := len(arr)
+	for i:= 0; i&lt;length; i&#43;&#43; {
+		width := arr[i]
+		for j:=i&#43;1; j&lt;length; j&#43;&#43; {
+			if width &gt; arr[j] {
+				width = arr[j]
+			}
+			area = width * (j-i)
+			if max_area &lt; area {
+				max_area = area;
+			}
+		}
+		
+	}
+	fmt.Println(max_area)
+}
 时间复杂度 O(n^2);" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://support-fly.github.io/post/technology/t_acm_max_area/" /><meta property="article:section" content="post" />
@@ -212,9 +253,50 @@ int main()
     printf(&#34;%d&#34;, max_area);
     return 0;
 }
+golang 题解：
+package main
+
+import (
+	&#34;fmt&#34;
+)
+
+func main() {
+	var a byte
+	var tmp int
+	var arr []int
+	for {
+		fmt.Scanf(&#34;%c&#34;, &amp;a)
+		if a &gt;= &#39;0&#39; &amp;&amp; a &lt;= &#39;9&#39; {
+			tmp = tmp*10 &#43; (int)(a - &#39;0&#39;)
+		} else {
+			arr = append(arr, tmp)
+			tmp = 0
+		}
+		if a == &#39;\n&#39; {
+			break;
+		}
+	}
+	var area int
+	max_area := 0
+	length := len(arr)
+	for i:= 0; i&lt;length; i&#43;&#43; {
+		width := arr[i]
+		for j:=i&#43;1; j&lt;length; j&#43;&#43; {
+			if width &gt; arr[j] {
+				width = arr[j]
+			}
+			area = width * (j-i)
+			if max_area &lt; area {
+				max_area = area;
+			}
+		}
+		
+	}
+	fmt.Println(max_area)
+}
 时间复杂度 O(n^2);"><meta itemprop="datePublished" content="2022-07-17T22:47:42+08:00" />
 <meta itemprop="dateModified" content="2022-07-17T22:47:42+08:00" />
-<meta itemprop="wordCount" content="591">
+<meta itemprop="wordCount" content="702">
 <meta itemprop="keywords" content="“algorithm&#34;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="太阳能板的最大面积"/>
 <meta name="twitter:description" content="题目描述
@@ -281,6 +363,47 @@ int main()
     }
     printf(&#34;%d&#34;, max_area);
     return 0;
+}
+golang 题解：
+package main
+
+import (
+	&#34;fmt&#34;
+)
+
+func main() {
+	var a byte
+	var tmp int
+	var arr []int
+	for {
+		fmt.Scanf(&#34;%c&#34;, &amp;a)
+		if a &gt;= &#39;0&#39; &amp;&amp; a &lt;= &#39;9&#39; {
+			tmp = tmp*10 &#43; (int)(a - &#39;0&#39;)
+		} else {
+			arr = append(arr, tmp)
+			tmp = 0
+		}
+		if a == &#39;\n&#39; {
+			break;
+		}
+	}
+	var area int
+	max_area := 0
+	length := len(arr)
+	for i:= 0; i&lt;length; i&#43;&#43; {
+		width := arr[i]
+		for j:=i&#43;1; j&lt;length; j&#43;&#43; {
+			if width &gt; arr[j] {
+				width = arr[j]
+			}
+			area = width * (j-i)
+			if max_area &lt; area {
+				max_area = area;
+			}
+		}
+		
+	}
+	fmt.Println(max_area)
 }
 时间复杂度 O(n^2);"/>
 
@@ -554,7 +677,7 @@ int main()
             <a href="https://support-fly.github.io/categories/technology/"> technology </a>
             
           </div>
-        <span class="more-meta"> 约 591 字 </span>
+        <span class="more-meta"> 约 702 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -634,6 +757,47 @@ int main()
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d&#34;</span>, max_area);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="golang-题解">golang 题解：</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">byte</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">tmp</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanf</span>(<span style="color:#e6db74">&#34;%c&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;9&#39;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tmp</span> = <span style="color:#a6e22e">tmp</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> (<span style="color:#66d9ef">int</span>)(<span style="color:#a6e22e">a</span> <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>)
+</span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">arr</span> = append(<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">tmp</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tmp</span> = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\n&#39;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">area</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">max_area</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">arr</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span>&lt;<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">width</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>]
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span><span style="color:#f92672">:=</span><span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">j</span>&lt;<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">width</span> &gt; <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>] {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">width</span> = <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>]
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">area</span> = <span style="color:#a6e22e">width</span> <span style="color:#f92672">*</span> (<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">max_area</span> &lt; <span style="color:#a6e22e">area</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">max_area</span> = <span style="color:#a6e22e">area</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">max_area</span>)
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>时间复杂度 O(n^2);</p>
     </div>
