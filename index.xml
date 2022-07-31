@@ -591,6 +591,76 @@ Mac下使用命令：&lt;br&gt;
     </item>
     
     <item>
+      <title>[shell] 批量修改文件夹、文件名和文件内容</title>
+      <link>https://support-fly.github.io/post/technology/t_shell_001/</link>
+      <pubDate>Fri, 30 Jul 2021 12:09:23 +0800</pubDate>
+      
+      <guid>https://support-fly.github.io/post/technology/t_shell_001/</guid>
+      
+        <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;　　在日常工作当中，偶尔会遇到需要修改文件夹名字，修改文件名字以及修改文件内容的情况；当修改的关键字为固定内容的时候，且数量很多时，如果用人工手动修改，会非常耗时且乏味无趣。&lt;br&gt;
+　　下列脚本为了解决这个问题提供了思路和实践。个人经验所学，实际使用可能会有一些问题，欢迎指教；脚本请按需采用。&lt;/p&gt;
+&lt;p&gt;　　例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将文件内容 cont 修改为 content&lt;/li&gt;
+&lt;li&gt;将文件名 file_xxx.c 修改为 files_xxx.c&lt;/li&gt;
+&lt;li&gt;将文件夹　dir1 修改为 direct1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;脚本说明&#34;&gt;脚本说明&lt;/h2&gt;
+&lt;h3 id=&#34;修改文件内容&#34;&gt;修改文件内容&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;grep -rl ${key} --include=&amp;quot;*.c&amp;quot; --exclude=&amp;quot;*.bin&amp;quot; --exclude-dir=“tool” | xargs sed -i &amp;quot;s/${key}/${value}/g&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;grep -rl ${key} --include=&amp;quot;*.c&amp;quot; --exclude=&amp;quot;*.bin&amp;quot; --exclude-dir=“tool”&lt;/code&gt;&lt;br&gt;
+提取关键字为 ${key} 的文件相对路径名，该文件路径的后缀为 .c，但是后缀不为 .bin，该文件的路径不能为 tool。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;xargs sed -i &amp;quot;s/${key}/${value}/g&amp;quot;&lt;/code&gt;&lt;br&gt;
+替换文件中 ${key} 关键字为 ${value}，文件为前一条命令中的内容。MAC 系统下 sed -i 后面要接空格 “”，具体说明可搜索一下。&lt;/p&gt;
+&lt;h3 id=&#34;修改文件名&#34;&gt;修改文件名&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;find . -name &amp;quot;*${key}*&amp;quot; -type f | sed -e &amp;quot;p;s/${key}/${value}/g&amp;quot; | xargs -n2 mv&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;find . -name &amp;quot;*${key}&amp;quot; -type f&lt;/code&gt;&lt;br&gt;
+找到一个文件，该文件名包含关键字 ${key}&lt;/p&gt;
+&lt;h3 id=&#34;修改文件夹名&#34;&gt;修改文件夹名&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;find . -name &amp;quot;*${key}*&amp;quot; -type d | sed -e &amp;quot;p;s/${key}/${value}/g&amp;quot; | xargs -n2 mv&lt;/code&gt;&lt;br&gt;
+找到一个文件夹，该文件夹名包含关键字 ${key}&lt;/p&gt;
+&lt;h2 id=&#34;脚本示例&#34;&gt;脚本示例&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#/bin/bash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# define array&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dirs&lt;span style=&#34;color:#f92672&#34;&gt;=(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;demo&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;demo2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# define a associate array，must in bash version 4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;declare -A dic
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dic&lt;span style=&#34;color:#f92672&#34;&gt;=(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;cont&lt;span style=&#34;color:#f92672&#34;&gt;]=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;replace&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;cont2&lt;span style=&#34;color:#f92672&#34;&gt;]=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;replace2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; dir in &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;dirs[@]&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -d &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;dir&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;dir&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        cd &lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;dir&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; key in &lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;!dic[*]&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            value&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;dic[&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;]&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; ==&amp;gt; &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;value&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;# 1.修改文件内容&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            grep -rl &lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt; --exclude&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;*.bin&amp;#34;&lt;/span&gt; --exclude-dir&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;tool&amp;#34;&lt;/span&gt; | xargs sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;s/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;value&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/g&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;# 3.修改文件夹名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            find . -name &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;*&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;*&amp;#34;&lt;/span&gt; -type d | sed -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;p;s/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;value&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/g&amp;#34;&lt;/span&gt; | xargs -n2 mv
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;# 2.修改文件名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            find . -name &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;*&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;*&amp;#34;&lt;/span&gt; -type f | sed -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;p;s/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;value&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/g&amp;#34;&lt;/span&gt; | xargs -n2 mv
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        cd -
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dir not exist!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;问题&#34;&gt;问题&lt;/h3&gt;
+&lt;p&gt;　　当替换的关键字内容有重复时，比如用 cont 替换 content，此时会由于内容重叠导致出现一些重复替换或无法替换的问题，请注意。&lt;/p&gt;
+&lt;hr&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Math Preview</title>
       <link>https://support-fly.github.io/post/math-preview/</link>
       <pubDate>Mon, 04 Mar 2019 16:01:23 +0800</pubDate>

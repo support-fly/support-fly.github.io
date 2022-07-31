@@ -135,6 +135,13 @@
   </url>
   
   <url>
+    <loc>https://support-fly.github.io/post/technology/t_shell_001/</loc>
+    <lastmod>2021-07-30T12:09:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://support-fly.github.io/categories/docs/</loc>
     <lastmod>2019-03-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
