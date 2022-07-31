@@ -591,6 +591,49 @@ Mac下使用命令：&lt;br&gt;
     </item>
     
     <item>
+      <title>MAC 升级 bash 并配置为默认程序</title>
+      <link>https://support-fly.github.io/post/skills/about_mac_config/</link>
+      <pubDate>Sat, 31 Jul 2021 11:03:36 +0800</pubDate>
+      
+      <guid>https://support-fly.github.io/post/skills/about_mac_config/</guid>
+      
+        <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;　　在 MAC 环境下，默认的 bash 为 3.x 版本，有时候一些 shell 命令需要在高版本上才支持，所以需要对 bash 环境进行升级。&lt;br&gt;
+　　下列为 MAC 下升级及配置操作，备忘。&lt;/p&gt;
+&lt;h2 id=&#34;bash-升级&#34;&gt;bash 升级&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;检查 bash 版本&lt;br&gt;
+&lt;code&gt;bash --version&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;使用 homebrew 安装新版本&lt;br&gt;
+&lt;code&gt;brew install bash&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;查看已安装版本&lt;br&gt;
+&lt;code&gt;which -a bash&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;/usr/local/bin/bash&lt;/code&gt; 为新安装的版本&lt;br&gt;
+&lt;code&gt;/bin/bash&lt;/code&gt; 为 MAC 自带版本&lt;/li&gt;
+&lt;li&gt;验证新版本&lt;br&gt;
+&lt;code&gt;/usr/local/bin/bash --version&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;配置默认-bash-版本&#34;&gt;配置默认 bash 版本&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编辑配置文件&lt;br&gt;
+&lt;code&gt;sudo vim /etc/shells&lt;/code&gt;&lt;br&gt;
+把 &lt;code&gt;/usr/local/bin/bash&lt;/code&gt; 添加到最后一行，再执行下列命令把 bash 切到最新版本&lt;br&gt;
+&lt;code&gt;chsh -s /usr/local/bin/bash&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;验证最新版本&lt;br&gt;
+&lt;code&gt;bash --version&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;其它&#34;&gt;其它&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;bash 新旧切换&lt;br&gt;
+&lt;code&gt;chsh -s /usr/local/bin/bash&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;chsh -s /bin/bash&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;bash 配置文件&lt;br&gt;
+&lt;code&gt;~/.bash_profile&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>[shell] 批量修改文件夹、文件名和文件内容</title>
       <link>https://support-fly.github.io/post/technology/t_shell_001/</link>
       <pubDate>Fri, 30 Jul 2021 12:09:23 +0800</pubDate>

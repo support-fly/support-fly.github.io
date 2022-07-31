@@ -339,6 +339,72 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/skills/about_mac_config/">MAC 升级 bash 并配置为默认程序</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2021-07-31" class="post-time">
+        2021-07-31
+      </time>
+      
+      <span class="more-meta"> 约 189 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+        
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <h2 id="背景">背景</h2>
+<p>　　在 MAC 环境下，默认的 bash 为 3.x 版本，有时候一些 shell 命令需要在高版本上才支持，所以需要对 bash 环境进行升级。<br>
+　　下列为 MAC 下升级及配置操作，备忘。</p>
+<h2 id="bash-升级">bash 升级</h2>
+<ul>
+<li>检查 bash 版本<br>
+<code>bash --version</code></li>
+<li>使用 homebrew 安装新版本<br>
+<code>brew install bash</code></li>
+<li>查看已安装版本<br>
+<code>which -a bash</code><br>
+<code>/usr/local/bin/bash</code> 为新安装的版本<br>
+<code>/bin/bash</code> 为 MAC 自带版本</li>
+<li>验证新版本<br>
+<code>/usr/local/bin/bash --version</code></li>
+</ul>
+<h2 id="配置默认-bash-版本">配置默认 bash 版本</h2>
+<ul>
+<li>编辑配置文件<br>
+<code>sudo vim /etc/shells</code><br>
+把 <code>/usr/local/bin/bash</code> 添加到最后一行，再执行下列命令把 bash 切到最新版本<br>
+<code>chsh -s /usr/local/bin/bash</code></li>
+<li>验证最新版本<br>
+<code>bash --version</code></li>
+</ul>
+<h2 id="其它">其它</h2>
+<ul>
+<li>bash 新旧切换<br>
+<code>chsh -s /usr/local/bin/bash</code><br>
+<code>chsh -s /bin/bash</code></li>
+<li>bash 配置文件<br>
+<code>~/.bash_profile</code></li>
+</ul>
+    </div>
+    <div class="read-more">
+      <a href="/post/skills/about_mac_config/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/technology/t_shell_001/">[shell] 批量修改文件夹、文件名和文件内容</a>
     </h1>
     
@@ -467,50 +533,6 @@
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/shortcodes-preview/">Shortcodes Preview</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-03-04" class="post-time">
-        2018-03-04
-      </time>
-      <div class="post-category">
-          <a href="https://support-fly.github.io/categories/docs/"> docs </a>
-          <a href="https://support-fly.github.io/categories/shortcodes/"> shortcodes </a>
-          <a href="https://support-fly.github.io/categories/index/"> index </a>
-          
-        </div>
-      <span class="more-meta"> 约 405 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-        
-        
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <h2 id="what-a-shortcode-is">What a Shortcode is</h2>
-<p>Hugo loves Markdown because of its simple content format, but there are times when Markdown falls short. Often, content authors are forced to add raw HTML (e.g., video <code>&lt;iframes&gt;</code>) to Markdown content. We think this contradicts the beautiful simplicity of Markdown&rsquo;s syntax.</p>
-<p>Hugo created <strong>shortcodes</strong> to circumvent these limitations.</p>
-<p>A shortcode is a simple snippet inside a content file that Hugo will render using a predefined template. Note that shortcodes will not work in template files. If you need the type of drop-in functionality that shortcodes provide but in a template, you most likely want a [partial template][partials] instead.</p>
-<p>In addition to cleaner Markdown, shortcodes can be updated any time to reflect new classes, techniques, or standards. At the point of site generation, Hugo shortcodes will easily merge in your changes. You avoid a possibly complicated search and replace operation.</p>
-<p>More details: <a href="https://gohugo.io/content-management/shortcodes/">https://gohugo.io/content-management/shortcodes/</a></p>
-    </div>
-    <div class="read-more">
-      <a href="/post/shortcodes-preview/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -558,6 +580,10 @@
       
       <li >
         <a href="/page/6/">6</a>
+      </li>
+      
+      <li >
+        <a href="/page/7/">7</a>
       </li>
       
     </ul>

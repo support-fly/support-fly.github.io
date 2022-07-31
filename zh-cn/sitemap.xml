@@ -135,6 +135,13 @@
   </url>
   
   <url>
+    <loc>https://support-fly.github.io/post/skills/about_mac_config/</loc>
+    <lastmod>2021-07-31T11:03:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://support-fly.github.io/post/technology/t_shell_001/</loc>
     <lastmod>2021-07-30T12:09:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
