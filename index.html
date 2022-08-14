@@ -339,6 +339,113 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/technology/t_acm_ip_address/">判断合法 IP</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-08-12" class="post-time">
+        2022-08-12
+      </time>
+      <div class="post-category">
+          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
+          
+        </div>
+      <span class="more-meta"> 约 441 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+        
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <h2 id="题目描述">题目描述：</h2>
+<p>现在IPV4下用一个32位无符号整数来表示，一般用点分方式来显示，点将IP地址分成4个部分，每个部分为8位，表示成一个无符号整数（因此不需要用正号出现），如10.137.17.1，是我们非常熟悉的IP地址，一个IP地址串中没有空格出现（因为要表示成一个32数字）。</p>
+<p>现在需要你用程序来判断IP是否合法。</p>
+<p>注意本题有多组样例输入。</p>
+<h2 id="输入描述">输入描述：</h2>
+<p>输入一个ip地址，保证是xx.xx.xx.xx的形式（xx为整数）</p>
+<h2 id="输出描述">输出描述：</h2>
+<p>返回判断的结果YES or NO</p>
+<h2 id="示例">示例：</h2>
+<p>输入：</p>
+<pre tabindex="0"><code>10.138.15.1
+255.0.0.255
+255.255.255.1000
+</code></pre><p>输出：</p>
+<pre tabindex="0"><code>YES
+YES
+NO
+</code></pre><h2 id="解题思路">解题思路：</h2>
+<p>1、地址分四段，且必须有四段<br>
+2、dot 有三个，且必须三个<br>
+3、每段数字在 0 - 255 之间<br>
+4、每段数字长度大于 0，少于 3</p>
+<h2 id="测试用例">测试用例：</h2>
+<pre tabindex="0"><code>10.128.1.156.1
+10.128.1.
+10.128.1.156.
+256.0.0.0
+10.1111.1.1
+1..0.122
+12.a.89.1
+255.255.255.255
+0.0.0.0
+</code></pre><h2 id="题解---c-语言">题解 - C 语言</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> ip[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, ip) <span style="color:#f92672">!=</span> EOF) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> strlen(ip);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> seg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> dot <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> seg_len <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>len; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (ip[i] <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">&amp;&amp;</span> ip[i] <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;9&#39;</span>) {
+</span></span><span style="display:flex;"><span>                seg_len<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                seg <span style="color:#f92672">=</span> seg<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ip[i]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (ip[i] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;.&#39;</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (seg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">255</span> <span style="color:#f92672">||</span> seg_len <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> seg_len <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> (seg<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> seg_len<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>)) {
+</span></span><span style="display:flex;"><span>                    printf(<span style="color:#e6db74">&#34;NO&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                seg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>                seg_len <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>                dot<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                printf(<span style="color:#e6db74">&#34;NO&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (seg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">255</span> <span style="color:#f92672">||</span> seg_len <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> seg_len <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> (seg<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> seg_len<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>)) {
+</span></span><span style="display:flex;"><span>            printf(<span style="color:#e6db74">&#34;NO&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (dot <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>            printf(<span style="color:#e6db74">&#34;YES&#34;</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            printf(<span style="color:#e6db74">&#34;NO&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/t_acm_ip_address/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/technology/t_acm_student_square_matrix/">学生方阵</a>
     </h1>
     
@@ -645,149 +752,6 @@
     </div>
     <div class="read-more">
       <a href="/post/technology/t_acm_longest_child_sequence/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/technology/t_acm_max_area/">太阳能板的最大面积</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-07-17" class="post-time">
-        2022-07-17
-      </time>
-      <div class="post-category">
-          <a href="https://support-fly.github.io/categories/technology/"> technology </a>
-          
-        </div>
-      <span class="more-meta"> 约 702 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-        
-        
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <h2 id="题目描述">题目描述</h2>
-<p>给航天器一侧加装长方形和正方形的太阳能板,需要先安装两个支柱,再在支柱的中间部分固定太阳能板;但航天器不同位置的支柱长度不同,太阳能板的安装面积受限于最短一侧的那支支柱的长度。<br>
-现提供一组整型数组的支柱高度数据，假设每个支柱间的距离相等为一个单位长度，计算如何选择两根支柱可以使太阳能板的面积最大。</p>
-<h2 id="输入描述">输入描述</h2>
-<p><code>10,9,8,7,6,5,4,3,2,1</code><br>
-注释，支柱至少有两根，最多10000根，能支持的高度范围1~10^9的整数.<br>
-柱子的高度是无序的,例子中的递减是巧合。</p>
-<h2 id="输出描述">输出描述</h2>
-<p>可以支持的最大太阳板面积:(10m高支柱和5m高支柱之间)<br>
-<code>25</code></p>
-<h3 id="示例1">示例1</h3>
-<p>输入<br>
-<code>10,9,8,7,6,5,4,3,2,1</code><br>
-输出<br>
-<code>25</code><br>
-备注：10米高支柱和5米高支柱之间宽度为5，高度取小的支柱高度也是5，面积为25，任取其他两根支柱所能获得的面积都小于25 所以最大面积为25。<br>
-思路分析<br>
-10米高支柱和5米高支柱之间宽度为5，柱子的高度是无序的，所以宽等于高支柱的高减去低支柱的高。高度取小的支柱高度。任取其他两根支柱所能获得的面积，取其中最大的。</p>
-<h2 id="测试用例">测试用例</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-t" data-lang="t"><span style="display:flex;"><span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">10</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">30</span>
-</span></span></code></pre></div><h2 id="c语言题解">C语言题解：</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX 10002
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> arr[MAX];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> a;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 处理输入
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">do</span> {
-</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> getchar();
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">&amp;&amp;</span> a<span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;9&#39;</span>) {
-</span></span><span style="display:flex;"><span>            tmp <span style="color:#f92672">=</span> tmp<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> a <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>; <span style="color:#75715e">// 将字符串转化为数字
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        } <span style="color:#66d9ef">else</span> { <span style="color:#75715e">// ,
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            arr[size<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> tmp; <span style="color:#75715e">// 将数字存储到数组中
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            tmp <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">while</span> (a <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;\n&#39;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> area;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> max_area <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>size; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> width <span style="color:#f92672">=</span> arr[i]; <span style="color:#75715e">// 保存开始位置作为初始高度
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">&lt;</span>size; j<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>            width <span style="color:#f92672">=</span> width<span style="color:#f92672">&lt;</span>arr[j] <span style="color:#f92672">?</span> width : arr[j]; <span style="color:#75715e">// 遍历获取最小高度
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            area <span style="color:#f92672">=</span> width <span style="color:#f92672">*</span> (j<span style="color:#f92672">-</span>i);
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (area <span style="color:#f92672">&gt;</span> max_area) {
-</span></span><span style="display:flex;"><span>                max_area <span style="color:#f92672">=</span> area;
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d&#34;</span>, max_area);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="golang-题解">golang 题解：</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">byte</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">tmp</span> <span style="color:#66d9ef">int</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">int</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanf</span>(<span style="color:#e6db74">&#34;%c&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;9&#39;</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tmp</span> = <span style="color:#a6e22e">tmp</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> (<span style="color:#66d9ef">int</span>)(<span style="color:#a6e22e">a</span> <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>)
-</span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">arr</span> = append(<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">tmp</span>)
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tmp</span> = <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\n&#39;</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">area</span> <span style="color:#66d9ef">int</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">max_area</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">arr</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span>&lt;<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">width</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>]
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span><span style="color:#f92672">:=</span><span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">j</span>&lt;<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">width</span> &gt; <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>] {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">width</span> = <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>]
-</span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">area</span> = <span style="color:#a6e22e">width</span> <span style="color:#f92672">*</span> (<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#a6e22e">i</span>)
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">max_area</span> &lt; <span style="color:#a6e22e">area</span> {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">max_area</span> = <span style="color:#a6e22e">area</span>;
-</span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">max_area</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>时间复杂度 O(n^2);</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/technology/t_acm_max_area/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
